@@ -1,0 +1,184 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+
+    <changeSet id="1" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="achievement">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_achievement"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="vuz_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link_of_sertificate" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="additional_competition">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_additional_competition"/>
+            </column>
+            <column name="direction_of_study" type="VARCHAR(255)"/>
+            <column name="link_of_certificate" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="candidates">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_candidates"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="skill_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="education_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="additional_competition_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="achievement_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="chosen_candidate">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_chosen_candidate"/>
+            </column>
+            <column name="candidate_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="5" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="education">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_education"/>
+            </column>
+            <column name="university_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grades" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="6" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="profession">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_profession"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="7" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="universities">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_universities"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="8" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="skills">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_skills"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="grade" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="9" author="konstantintokarev">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="users">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="username" type="VARCHAR(255)"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="password" type="VARCHAR(255)"/>
+            <column name="phone_number" type="VARCHAR(255)"/>
+            <column name="link_of_avatar" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="10" author="Алина">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="skill_to_candidate">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_skill_to_candidate"/>
+            </column>
+            <column name="candidate_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="11" author="Алина">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="skill_to_profession">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_skill_to_profession"/>
+            </column>
+            <column name="profession_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="skill_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="grade" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="12" author="Алина">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="candidate_to_additional_competition">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_candidate_to_additional_competition"/>
+            </column>
+            <column name="candidate_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="addititonal_id" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="13" author="Алина">
+        <createSequence incrementBy="1" sequenceName="hibernate_sequence" startValue="1"/>
+        <createTable tableName="profession_to_candidate">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_profession_to_candidate"/>
+            </column>
+            <column name="candidate_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="profession_id" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

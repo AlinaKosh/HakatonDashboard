@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  servlet:
+#    context-path: /api/ws
+    session:
+      timeout: 604800s
+      cookie:
+        max-age: 604800s
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+dev-auth: true
+spring:
+  freemarker:
+    expose-request-attributes: true
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/dashboard2
+    username: postgres
+    password: 1234
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    drop-first: false
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+    jpa:
+      show-sql: true
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+
+management:
+  server:
+    port: 8091
+  endpoints:
+    enabled-by-default: false
+  endpoint:
+    health:
+      enabled: true
+      probes:
+        enabled: true
+
+app:
+  cache:
+    size: 365
+  rest:
+    api:
+      prefix: /api
+
+cbr:
+  url: "https://cbr.ru/scripts/XML_daily.asp"
